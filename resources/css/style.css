@@ -1,0 +1,1682 @@
+@import url('https://fonts.googleapis.com');
+
+:root {
+    --color-main: #ffffff;
+    --color-accent: #00D1FF;
+    --color-dark: #212429;
+
+    --komerz-blue: #434ea0;
+    --komerz-gray: #a5a5a7;
+    --nav-bg: #ffffff;
+    /* Passiamo a un bianco pulito o un grigio molto chiaro */
+    --footer-bg: #1a1c20;
+    /* Grigio scuro professionale */
+}
+
+body {
+    background-color: #F4f4f6;
+    font-family: 'Montserrat', sans-serif;
+}
+
+/*-------------------------------------------------------navbar----------------------------------------------------------------*/
+.navbar {
+    background: var(--nav-bg) !important;
+    border-bottom: 3px solid var(--komerz-blue);
+    /* Richiamo al colore principale */
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
+    transition: all 0.3s ease;
+    padding: 0.5rem 0 !important;
+
+    /* L'OMBRA (box-shadow) */
+    /* Sintassi: spostamento-x spostamento-y sfocatura diffusione colore */
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+
+    padding: 0.6rem 0;
+    transition: box-shadow 0.3s ease;
+    /* Rende l'effetto fluido */
+}
+
+.sticky-top {
+    z-index: 1020 !important;
+}
+
+/* Miglioriamo i link della navbar */
+.nav-link {
+    color: #333 !important;
+    font-weight: 500;
+    margin: 0 10px;
+    position: relative;
+}
+
+.nav-link:hover {
+    color: var(--komerz-blue) !important;
+}
+
+/* Effetto linea sotto i link al passaggio del mouse */
+.nav-link::after {
+    content: '';
+    position: absolute;
+    width: 0;
+    height: 2px;
+    bottom: 0;
+    left: 0;
+    background-color: var(--komerz-blue);
+    transition: width 0.3s ease;
+}
+
+.nav-link:hover::after {
+    width: 100%;
+}
+
+/* Pulsanti Accedi/Registrati in sintonia */
+.btn-outline-light {
+    border-color: var(--komerz-blue) !important;
+    color: var(--komerz-blue) !important;
+    border-radius: 8px;
+    padding: 8px 20px;
+    transition: all 0.3s;
+}
+
+.btn-outline-light:hover {
+    background-color: var(--komerz-blue) !important;
+    color: #fff !important;
+    transform: translateY(-2px);
+}
+
+/* Dropdown più elegante */
+.dropdown-menu {
+    border: none;
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.15);
+    border-radius: 12px;
+}
+
+.nav-link.text-secondary:hover {
+    color: var(--komerz-blue) !important;
+    transition: 0.3s;
+}
+
+.fs-7 {
+    font-size: 0.9rem;
+}
+
+.navbar-brand img {
+    filter: brightness(1.1);
+}
+
+.btn-primary {
+    background-color: var(--komerz-blue);
+
+}
+
+.btn-primary:hover {
+    background-color: var(--color-main);
+    color: var(--komerz-blue);
+    border-color: var(--komerz-blue);
+
+}
+
+.profile-nav-link {
+    transition: all 0.3s ease;
+    border: 1px solid transparent;
+}
+
+.profile-nav-link:hover {
+    background-color: rgba(255, 255, 255, 0.1);
+}
+
+/* Rimuove la freccetta di default di Bootstrap */
+.nav-link.dropdown-toggle::after {
+    display: none !important;
+}
+
+.profile-icon-wrapper {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 32px;
+    height: 32px;
+    background-color: rgba(255, 255, 255, 0.1);
+    border-radius: 50%;
+    color: white;
+}
+
+/* Rimuove lo sfondo blu e il testo bianco quando si clicca sugli elementi del dropdown */
+.dropdown-item:active,
+.dropdown-item:focus,
+.dropdown-item.active {
+    background-color: transparent !important;
+    /* Toglie il blu */
+    color: inherit !important;
+    /* Mantiene il colore originale del testo */
+}
+
+/* Rimuove il bordino blu (outline) o l'ombra quando si clicca sui pulsanti/link */
+.profile-nav-link:focus,
+.profile-nav-link:active,
+.dropdown-item:focus {
+    outline: none !important;
+    box-shadow: none !important;
+}
+
+/* Opzionale: aggiungi un leggero effetto hover grigio al posto del blu */
+.dropdown-item:hover {
+    background-color: #f8f9fa !important;
+}
+
+/* Effetto ingrandimento elegante per il logo */
+.logo-hover {
+    transition: transform 0.3s ease-in-out;
+    /* Rende il movimento fluido */
+    will-change: transform;
+    /* Ottimizza le prestazioni del browser */
+}
+
+.logo-hover:hover {
+    transform: scale(1.1);
+    /* Ingrandisce il logo del 10% */
+}
+
+/* 1. Assicuriamoci che la navbar sia bianca e sopra tutto */
+.navbar {
+    background-color: white !important;
+    /* Forza il bianco */
+    position: sticky;
+    top: 0;
+    z-index: 2000 !important;
+    /* Livello altissimo per stare sopra al velo */
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+    /* Leggera ombra per staccarla dal fondo */
+}
+
+/* 2. Creiamo il "velo" che copre il resto della pagina */
+/* Usiamo l'elemento adiacente alla navbar (di solito il tuo <main> o il primo <div> dopo la nav) */
+.navbar+*::before {
+    content: "";
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100vw;
+    height: 100vh;
+    background: rgba(0, 0, 0, 0.5);
+    /* Scurisce */
+    backdrop-filter: blur(8px);
+    /* Sfoca */
+    z-index: 1500;
+    /* Più basso della navbar (2000) */
+    display: none;
+    /* Nascosto di default */
+    pointer-events: none;
+}
+
+/* 3. LA LOGICA SENZA JS: 
+   Quando la navbar ha un menu aperto (.show), 
+   mostra il velo sull'elemento successivo alla navbar 
+*/
+.navbar:has(.dropdown-menu.show)+*::before {
+    display: block;
+}
+
+/* 4. Assicurati che i menu a tendina siano bianchi e leggibili */
+.dropdown-menu.show {
+    z-index: 2100 !important;
+    background-color: white !important;
+    border: none !important;
+    box-shadow: 0 10px 40px rgba(0, 0, 0, 0.2) !important;
+}
+
+/* 1. Rotazione della freccia nel selettore lingua */
+/* Quando il link del dropdown ha la classe 'show' (aggiunta da Bootstrap), 
+   prendi la freccia al suo interno e ruotala */
+#langDropdown.show .bi-chevron-down {
+    transform: rotate(180deg);
+    display: inline-block;
+    /* Necessario per permettere la rotazione */
+    transition: transform 0.3s ease;
+    /* Rende il movimento fluido */
+}
+
+/* 2. Opzionale: aggiungi una transizione fluida anche quando torna giù */
+.bi-chevron-down {
+    display: inline-block;
+    transition: transform 0.3s ease;
+}
+
+#profileDropdown.show .bi-chevron-down {
+    transform: rotate(180deg);
+    transition: transform 0.3s ease;
+}
+
+/* Rimuove la linea blu sotto l'icona omino/lingua quando ci passi sopra */
+.nav-link.dropdown-toggle::after,
+#guestDropdown::after,
+#profileDropdown::after,
+#langDropdown::after {
+    display: none !important;
+    content: none !important;
+}
+
+/* Rotazione freccia per Utente NON loggato */
+#guestDropdown[aria-expanded="true"] .bi-chevron-down {
+    transform: rotate(180deg);
+}
+
+/* Assicurati che tutte le freccette abbiano la transizione fluida */
+.bi-chevron-down {
+    display: inline-block !important;
+    transition: transform 0.3s ease !important;
+}
+
+/* Forza l'allineamento a destra della tendina */
+.dropdown-menu-end {
+    right: 0 !important;
+    left: auto !important;
+}
+
+/* Distanza corretta dalla navbar */
+.navbar .dropdown-menu {
+    margin-top: 15px !important;
+}
+
+/* Regola specifica per la tendina LOGIN (Guest o Auth) */
+#guestDropdown+.dropdown-menu,
+#profileDropdown+.dropdown-menu {
+    margin-top: 20px !important;
+    /* Regola questa per il login */
+}
+
+/* Regola specifica per la tendina LINGUE */
+#langDropdown+.dropdown-menu {
+    margin-top: 15px !important;
+    /* Regola questa per le lingue finché non sono allineate */
+}
+
+/* Forza l'allineamento a destra per entrambe se serve */
+.dropdown-menu-end {
+    right: 0 !important;
+    left: auto !important;
+}
+
+/* 1. Rimuove la linea blu sotto il nome e l'icona del profilo */
+#profileDropdown::after {
+    display: none !important;
+    content: none !important;
+}
+
+/* 2. Rotazione della freccia quando il menu è APERTO */
+#profileDropdown[aria-expanded="true"] .bi-chevron-down {
+    transform: rotate(180deg);
+}
+
+/* 3. Forza la freccia ad avere una transizione fluida */
+#profileDropdown .bi-chevron-down {
+    display: inline-block !important;
+    transition: transform 0.3s ease !important;
+}
+
+/* 4. ALLINEAMENTO TENDINA (Calibrato per pareggiare le lingue) */
+/* Usiamo 10px perché l'icona profilo è più alta della bandierina */
+#profileDropdown+.dropdown-menu {
+    margin-top: 15px !important;
+}
+
+/* 5. Assicura che la tendina resti ancorata a destra */
+.dropdown-menu-end {
+    right: 0 !important;
+    left: auto !important;
+}
+
+/*-------------------------------------------------------------------fine navbar---------------------------------------------*/
+
+
+/*--------------------------------------------------------------Carrello --------------------------------------------------*/
+
+.btn-checkout-sink:hover {
+    background-color: var(--komerz-blue) !important;
+    color: white !important;
+
+    /* Effetto Zoom Interno: 0.96 significa rimpicciolito del 4% */
+    transform: scale(0.96);
+
+    /* Riduciamo l'ombra per simulare che il bottone stia "affondando" nella pagina */
+    box-shadow: none !important;
+
+    filter: brightness(95%);
+    /* Opzionale: scurisce leggermente per aumentare l'effetto pressione */
+}
+
+.btn-checkout-sink {
+    display: inline-block;
+    will-change: transform;
+}
+
+
+/* Gestione Hover per il bottone Torna alla Home */
+.btn-back-home:hover {
+    background-color: var(--komerz-blue) !important;
+    /* Mantiene il tuo blu */
+    color: white !important;
+    /* Forza la scritta a restare bianca */
+
+    /* Effetto Zoom verso l'interno (pressione) */
+    transform: scale(0.95);
+
+    /* Opzionale: scurisce leggermente il blu per dare feedback */
+    filter: brightness(90%);
+
+    /* Toglie l'ombra per simulare che il tasto entri nella pagina */
+    box-shadow: none !important;
+}
+
+
+/*------------------------------------------------------------fine Carrello------------------------------------------------*/
+
+
+
+/*-------------------------------------------------------------------Aboutus.blade---------------------------------------------*/
+
+/* Header con sfumatura Komerz */
+.about-header {
+    background: linear-gradient(135deg, var(--color-dark) 0%, var(--komerz-blue) 100%);
+    clip-path: ellipse(150% 100% at 50% 0%);
+    /* Effetto onda elegante */
+}
+
+.text-accent {
+    color: var(--color-accent) !important;
+}
+
+.text-komerz {
+    color: var(--komerz-blue) !important;
+}
+
+.border-komerz {
+    border-color: var(--komerz-blue) !important;
+}
+
+.border-accent {
+    border-color: var(--color-accent) !important;
+}
+
+/* Effetto per l'immagine */
+.about-img-container {
+    border-radius: 20px;
+    overflow: hidden;
+    transition: transform 0.4s ease;
+}
+
+.about-img-container:hover {
+    transform: translateY(-10px);
+}
+
+/* Icone */
+.bi-shield-check,
+.bi-lightning-charge,
+.bi-people {
+    display: inline-block;
+    transition: transform 0.3s ease;
+}
+
+.about-header h1 {
+    letter-spacing: -2px;
+}
+
+.btn-custom-join {
+    background-color: #001d3d;
+    /* Blu scuro Komerz */
+    color: #ffffff;
+    padding: 12px 30px;
+    border-radius: 50px;
+    /* Forma a pillola molto elegante */
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    border: 2px solid transparent;
+    transition: all 0.3s ease-in-out;
+    display: inline-block;
+}
+
+.btn-custom-join:hover {
+    background-color: transparent;
+    color: #001d3d;
+    /* Il testo diventa blu */
+    border-color: #001d3d;
+    /* Appare il bordo */
+    transform: translateY(-3px);
+    /* Effetto sollevamento */
+    box-shadow: 0 10px 20px rgba(0, 0, 0, 0.1) !important;
+}
+
+/* Se preferisci l'accento di colore (giallo/arancio) all'hover */
+
+/* .btn-custom-join:hover {
+    background-color: #ffc107; 
+    border-color: #ffc107;
+    color: #000;
+} */
+
+
+/*-------------------------------------------------------------------fine-Aboutus------------------------------------*/
+
+/*-------------------------------------------------------------------contact-navbar-----------------------------------*/
+
+/* Stili specifici per la pagina contatti */
+.text-accent {
+    color: var(--color-accent) !important;
+}
+
+.icon-box {
+    width: 50px;
+    height: 50px;
+    background: rgba(255, 255, 255, 0.05);
+    border-radius: 12px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+/* Riutilizziamo lo stile degli input che abbiamo creato per il login/register */
+.form-label-custom {
+    font-size: 0.75rem;
+    font-weight: 800;
+    text-transform: uppercase;
+    color: #6c757d;
+    letter-spacing: 0.5px;
+    margin-bottom: 5px;
+    display: block;
+}
+
+.form-control-custom {
+    border: 1.5px solid #ececf1;
+    border-radius: 12px;
+    padding: 12px 15px;
+    transition: all 0.3s ease;
+}
+
+.form-control-custom:focus {
+    border-color: var(--komerz-blue);
+    box-shadow: 0 0 0 4px rgba(67, 78, 160, 0.1);
+    outline: none;
+}
+
+.btn-komerz-primary {
+    background-color: var(--komerz-blue) !important;
+    color: white !important;
+    border: none;
+    border-radius: 50px;
+    transition: all 0.3s ease;
+}
+
+.btn-komerz-primary:hover {
+    transform: translateY(-3px);
+    box-shadow: 0 8px 20px rgba(67, 78, 160, 0.3);
+}
+
+/*-------------------------------------------------------------------fine-contact-navbar-----------------------------------*/
+
+
+
+
+/*-------------------------------------------------------------------login.blade---------------------------------------------*/
+
+/* Card di Login */
+.login-card {
+    background-color: #ffffff;
+    border: 1px solid rgba(0, 0, 0, 0.05);
+}
+
+.login-icon-box {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    width: 70px;
+    height: 70px;
+    background-color: rgba(67, 78, 160, 0.05);
+    border-radius: 50%;
+}
+
+/* Input Personalizzati */
+.form-label-custom {
+    font-size: 0.75rem;
+    font-weight: 800;
+    text-transform: uppercase;
+    color: #adb5bd;
+    letter-spacing: 0.5px;
+}
+
+.form-control-custom {
+    border: 1.5px solid #ececf1;
+    border-radius: 12px;
+    padding: 12px 15px;
+    transition: all 0.3s ease;
+    width: 100%;
+    /* Forza la stessa larghezza */
+    height: 50px;
+    /* Forza la stessa altezza (puoi regolare i px) */
+}
+
+.form-control-custom:focus {
+    border-color: var(--komerz-blue);
+    box-shadow: 0 0 0 4px rgba(67, 78, 160, 0.1);
+    outline: none;
+}
+
+/* Bottone Komerz */
+.btn-komerz-primary {
+    background-color: var(--komerz-blue) !important;
+    color: white !important;
+    border: none;
+    border-radius: 50px;
+    letter-spacing: 1px;
+    transition: all 0.3s ease;
+}
+
+.btn-komerz-primary:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 8px 15px rgba(67, 78, 160, 0.3);
+    filter: brightness(1.1);
+}
+
+/* Alert Coordinati */
+.alert-custom-info {
+    background-color: var(--color-dark);
+    color: var(--color-accent);
+    border: none;
+    border-radius: 12px;
+    font-size: 0.85rem;
+    padding: 10px;
+}
+
+/* Link e Checkbox */
+.text-komerz {
+    color: var(--komerz-blue);
+}
+
+.hover-link:hover {
+    text-decoration: underline !important;
+}
+
+.custom-check .form-check-input:checked {
+    background-color: var(--komerz-blue);
+    border-color: var(--komerz-blue);
+}
+
+.text-danger-custom {
+    color: #dc3545;
+    font-style: italic;
+}
+
+/*---------------------------------------------------------------fine-login.blade---------------------------------------------*/
+
+
+/*-------------------------------------------------------------register.blade---------------------------------------------*/
+
+/* Sezione specifica per il form registrazione */
+.login-card .row .col-md-6 {
+    margin-bottom: 0;
+    /* Compattezza per i campi password affiancati */
+}
+
+/* Tutti gli stili precedenti (btn-komerz-primary, form-control-custom, ecc.) 
+   si applicano automaticamente grazie alle classi usate nell'HTML sopra. */
+
+.text-komerz {
+    color: var(--komerz-blue) !important;
+}
+
+.login-card {
+    background-color: #ffffff;
+    border-radius: 25px !important;
+}
+
+/*-------------------------------------------------------------fine-register-blade---------------------------------------------*/
+
+
+/* ------------------------------------------------------------------Filtri------------------------------------------------- */
+.filter-spacing {
+    margin-bottom: 4rem !important;
+}
+
+.bg-primary {
+    background-color: var(--komerz-blue) !important;
+}
+
+.form-check-input:checked {
+    background-color: var(--komerz-blue);
+    border-color: var(--komerz-blue);
+}
+
+.badge {
+    padding-bottom: 0.5em;
+    padding-top: 0.5em;
+}
+
+.form-check-input,
+.form-check-label {
+    cursor: pointer !important;
+}
+
+.badge {
+    cursor: pointer !important;
+}
+
+
+/* ---------------------------------------------------------------Fine filtri ------------------------------------------------*/
+
+/* -------------------------------------------------------------------Paginazione-------------------------------------------- */
+/* Stile base per il link del titolo */
+.card-title-link {
+    display: inline-block;
+    transition: all 0.3s ease;
+    /* Rende il cambio fluido e non a scatti */
+    position: relative;
+}
+
+/* Effetto Hover */
+.card-title-link:hover {
+    color: #007bff !important;
+    /* Cambia il colore (es. Blu Bootstrap) */
+    transform: translateY(-2px);
+    /* Solleva leggermente il titolo */
+}
+
+/* Opzionale: Sottolineatura animata */
+.card-title-link::after {
+    content: '';
+    position: absolute;
+    width: 0;
+    height: 2px;
+    bottom: -2px;
+    left: 0;
+    background-color: #007bff;
+    transition: width 0.3s ease;
+}
+
+.card-title-link:hover::after {
+    width: 100%;
+}
+
+/* Colore dei numeri e dei bottoni */
+.pagination .page-link {
+    color: var(--color-main);
+    /* Cambia con il tuo colore (es. Arancione) */
+    background-color: var(--komerz-blue);
+    border-color: var(--komerz-blue);
+}
+
+/* Colore quando passi sopra con il mouse (Hover) */
+.pagination .page-link:hover {
+    color: var(--komerz-blue);
+    background-color: #e9ecef;
+    border-color: #dee2e6;
+}
+
+/* Colore del bottone attivo (la pagina corrente) */
+.pagination .page-item.active .page-link {
+    background-color: var(--color-accent);
+    /* Colore di sfondo attivo */
+
+    color: #fff;
+    /* Colore del numero attivo */
+}
+
+/* Colore del bottone disabilitato (es. "Precedente" sulla prima pagina) */
+.pagination .page-item.disabled .page-link {
+    color: #6c757d;
+    background-color: #fff;
+    border-color: #dee2e6;
+}
+
+/* -----------------------------------------------------------Fine paginazione------------------------------------------------ */
+
+
+
+/* ------------------------------------------------------index-blade-announcement-------------------------------------- */
+
+.btn-sell-custom {
+    /* Colori basati sulle tue variabili */
+    background-color: transparent;
+    color: var(--komerz-blue) !important;
+    border: 2px solid var(--komerz-blue) !important;
+
+    /* Forma e spaziatura */
+    border-radius: 50px;
+    /* Arrotondato elegante */
+    padding: 10px 25px !important;
+    font-size: 0.9rem;
+    letter-spacing: 1px;
+    font-weight: 700;
+
+    /* Transizione fluida */
+    transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+    display: inline-flex;
+    align-items: center;
+    text-transform: uppercase;
+}
+
+.btn-sell-custom:hover {
+    /* Effetto Trasformazione */
+    transform: translateY(-3px);
+
+    /* Cambio Colore */
+    background-color: var(--komerz-blue) !important;
+    color: #ffffff !important;
+
+    /* Ombra elegante al passaggio */
+    box-shadow: 0 8px 20px rgba(67, 78, 160, 0.3) !important;
+}
+
+/* Effetto al click */
+.btn-sell-custom:active {
+    transform: translateY(-1px);
+}
+
+.dimension {
+    margin-top: 100px !important;
+}
+
+.dimension2 {
+    margin-top: 90px !important;
+}
+.search-container-zoom {
+    transition: transform 0.3s ease, box-shadow 0.3s ease, border-color 0.3s ease;
+    cursor: pointer;
+    /* Aggiunge il cursore a manina per indicare l'interattività */
+}
+
+/* Effetto zoom al passaggio del mouse (hover) O quando l'input riceve il focus */
+.search-container-zoom:hover,
+.search-container-zoom:focus-within {
+    transform: scale(1.05);
+    /* Zoom del 5% */
+    box-shadow: 0 10px 20px rgba(0, 0, 0, 0.1) !important;
+    border-color: var(--komerz-blue) !important;
+    /* Cambia colore bordo in focus/hover */
+    background-color: #fff !important;
+    /* Opzionale: sfondo leggermente più chiaro in focus/hover */
+}
+/* ------------------------------------------------------fine-index-blade-announcement-------------------------------------- */
+
+/* -------------------------------------------------------index-blade-(no-livewre)-------------------------------------- */
+
+
+.hero-header {
+    background: linear-gradient(145deg, var(--komerz-blue) 0%, #2a3574 100%);
+    position: relative;
+    overflow: hidden;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+    margin-top: -1.5rem;
+    /* Per compensare eventuali margini del layout */
+}
+
+.min-vh-50 {
+    min-height: 55vh;
+}
+
+.komerz-highlight {
+    color: #93a3ff;
+    text-shadow: 0 0 20px rgba(147, 163, 255, 0.3);
+}
+
+.btn-hero-primary {
+    background-color: #fff;
+    color: var(--komerz-blue) !important;
+    border: none;
+    padding: 0.9rem 2.2rem;
+    border-radius: 50px;
+    font-weight: 800;
+    text-transform: uppercase;
+    font-size: 0.85rem;
+    transition: all 0.3s ease;
+}
+
+.btn-hero-primary:hover {
+    background-color: #f8f9fa;
+    transform: translateY(-4px);
+    box-shadow: 0 10px 20px rgba(0, 0, 0, 0.2) !important;
+}
+
+.btn-hero-outline {
+    background-color: transparent;
+    color: #fff !important;
+    border: 2px solid rgba(255, 255, 255, 0.4);
+    padding: 0.9rem 2.2rem;
+    border-radius: 50px;
+    font-weight: 700;
+    text-transform: uppercase;
+    font-size: 0.85rem;
+    transition: all 0.3s ease;
+}
+
+.btn-hero-outline:hover {
+    border-color: #fff;
+    background-color: rgba(255, 255, 255, 0.1);
+    transform: translateY(-4px);
+}
+
+.hero-visual-card {
+    width: 250px;
+    height: 250px;
+    background: rgba(255, 255, 255, 0.05);
+    backdrop-filter: blur(10px);
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    border-radius: 60px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 8rem;
+    color: rgba(255, 255, 255, 0.8);
+    transform: rotate(-8deg);
+    animation: float 6s ease-in-out infinite;
+}
+
+@keyframes float {
+
+    0%,
+    100% {
+        transform: translateY(0) rotate(-8deg);
+    }
+
+    50% {
+        transform: translateY(-20px) rotate(-5deg);
+    }
+}
+
+
+.brand-name {
+    font-family: 'Poppins', sans-serif;
+    /* O il font che usi, purché sia bold */
+    position: relative;
+    filter: drop-shadow(0 0 15px rgba(255, 255, 255, 0.2));
+}
+
+/* La K e la Z nere, con un riflesso lucido */
+.letter-k,
+.letter-z {
+    color: #0b0060;
+    text-shadow: 1px 1px 0px rgba(255, 255, 255, 0.2);
+    position: relative;
+}
+
+/* La parte centrale "omer" color perla/argento con sfumatura */
+.letter-main {
+    color: #C5C4C4;
+    background: linear-gradient(to bottom, #ffffff 0%, #C5C4C4 50%, #8e8e8e 100%);
+
+    /* Aggiungi questa riga standard per togliere l'errore */
+    background-clip: text;
+
+    /* Questa è quella che avevi già */
+    -webkit-background-clip: text;
+
+    -webkit-text-fill-color: transparent;
+    letter-spacing: 2px;
+    font-weight: 800;
+}
+
+/* Effetto "Sottolineatura" elegante sotto Komerz */
+.brand-name::after {
+    content: '';
+    position: absolute;
+    bottom: -5px;
+    left: 0;
+    width: 100%;
+    height: 3px;
+    background: linear-gradient(90deg, transparent, #ffffff, transparent);
+    opacity: 0.6;
+    border-radius: 50%;
+}
+
+/* Animazione leggera per attirare l'occhio */
+.brand-name {
+    animation: brand-glow 3s ease-in-out infinite alternate;
+}
+
+@keyframes brand-glow {
+    from {
+        filter: drop-shadow(0 0 5px rgba(255, 255, 255, 0.1));
+    }
+
+    to {
+        filter: drop-shadow(0 0 15px rgba(255, 255, 255, 0.4));
+    }
+}
+
+
+
+/* ---------------------------------------------------fine-index-blade-(no-livewre)-------------------------------------- */
+
+
+
+/* -------------------------------------------------------create-announcement-------------------------------------- */
+
+/* --- STILE FORM PUBBLICAZIONE --- */
+
+/* Contenitore principale del Form */
+form.p-4.shadow.rounded {
+    background-color: #ffffff !important;
+    border-top: 4px solid var(--komerz-blue) !important;
+    /* Forza il tuo blu */
+    border-radius: 20px !important;
+    padding: 2.5rem !important;
+    transition: box-shadow 0.3s ease;
+}
+
+form.p-4.shadow.rounded:hover {
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1) !important;
+}
+
+/* Etichette dei campi (Labels) */
+form .form-label {
+    color: var(--color-dark);
+    font-size: 0.85rem;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    margin-bottom: 8px;
+}
+
+/* Campi di Input, Select e Textarea */
+form .form-control,
+form .form-select {
+    border: 1.5px solid #ececf1;
+    border-radius: 12px;
+    padding: 12px 18px;
+    background-color: #fcfcfd;
+    transition: all 0.3s ease;
+}
+
+/* Effetto quando si clicca su un campo (Focus) */
+form .form-control:focus,
+form .form-select:focus {
+    background-color: #ffffff;
+    border-color: var(--komerz-blue);
+    box-shadow: 0 0 0 4px rgba(67, 78, 160, 0.1);
+    outline: none;
+}
+
+/* Bottone Pubblica Annuncio */
+form .btn-primary {
+    background-color: var(--komerz-blue) !important;
+    border: none !important;
+    border-radius: 50px !important;
+    /* Forma a pillola coerente */
+    padding: 14px 45px !important;
+    font-size: 0.9rem;
+    letter-spacing: 1.5px;
+    transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1) !important;
+}
+
+form .btn-primary:hover {
+    transform: translateY(-3px);
+    box-shadow: 0 8px 20px rgba(67, 78, 160, 0.3) !important;
+    filter: brightness(1.1);
+    color: var(--color-main);
+}
+
+/* Alert di Successo (Sopra il form) */
+.alert-success {
+    background-color: var(--color-dark) !important;
+    color: #00ff88 !important;
+    /* Verde neon come dashboard */
+    border: 1px solid #00ff88 !important;
+    border-radius: 50px !important;
+    padding: 12px 25px;
+    font-weight: 600;
+}
+
+/* Campi con errore (is-invalid) */
+form .form-control.is-invalid {
+    border-color: #dc3545;
+    background-image: none;
+    /* Rimuoviamo l'icona default di bootstrap */
+}
+
+/* --- Stile Dropzone --- */
+.dropzone-container {
+    position: relative;
+    border: 2px dashed #dee2e6;
+    border-radius: 1rem;
+    padding: 3rem;
+    text-align: center;
+    background-color: #f8f9fa;
+    transition: all 0.3s ease;
+}
+
+.dropzone-container:hover {
+    border-color: #0d6efd;
+    background-color: #f1f7ff;
+}
+
+.dropzone-input {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    opacity: 0;
+    cursor: pointer;
+    z-index: 10;
+}
+
+.dropzone-icon {
+    font-size: 2.5rem;
+    color: #0d6efd;
+    margin-bottom: 1rem;
+    display: block;
+}
+
+.dropzone-text-main {
+    font-weight: bold;
+    color: #212529;
+    margin-bottom: 0.25rem;
+}
+
+.dropzone-text-sub {
+    font-size: 0.875rem;
+    color: #6c757d;
+}
+
+.upload-loading-text {
+    font-size: 0.75rem;
+    font-weight: bold;
+    text-transform: uppercase;
+    color: #6c757d;
+}
+
+/* --- Stile Preview --- */
+.preview-grid {
+    padding: 1rem;
+    background: white;
+    border: 1px solid #dee2e6;
+    border-radius: 0.5rem;
+    margin: 0 !important;
+}
+
+.preview-wrapper {
+    position: relative;
+}
+
+.preview-image {
+    width: 100%;
+    aspect-ratio: 1/1;
+    background-size: cover;
+    background-position: center;
+    border-radius: 0.5rem;
+    border: 1px solid #dee2e6;
+}
+
+.preview-image.is-featured {
+    border: 4px solid #198754;
+    /* Verde successo */
+}
+
+.badge-featured {
+    position: absolute;
+    top: 0;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    background-color: #198754;
+    color: white;
+    font-size: 0.6rem;
+    padding: 0.25rem 0.5rem;
+    border-radius: 50rem;
+    text-transform: uppercase;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+.btn-delete-img {
+    position: absolute;
+    bottom: 0.5rem;
+    right: 0.5rem;
+    background-color: #dc3545;
+    color: white;
+    border: none;
+    border-radius: 50%;
+    width: 28px;
+    height: 28px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
+    transition: transform 0.2s;
+}
+
+.btn-delete-img:hover {
+    transform: scale(1.1);
+    background-color: #bb2d3b;
+}
+
+.error-message {
+    font-style: italic;
+    color: #dc3545;
+    font-size: 0.875rem;
+    margin-top: 0.5rem;
+    font-weight: bold;
+}
+
+
+/* ------------------------------------------------------fine-create-announcement-------------------------------------- */
+
+/* -------------------------------------------------------Show-announcement-------------------------------------- */
+
+.border-primary {
+    border-color: var(--komerz-blue) !important;
+}
+
+.btn-komerz {
+    background-color: transparent;
+    color: var(--komerz-blue);
+    border: 2px solid var(--komerz-blue);
+    border-radius: 50px;
+    /* Stile a pillola coerente con i tuoi rounded */
+    font-weight: bold;
+    text-transform: uppercase;
+    font-size: 0.9rem;
+    transition: all 0.3s ease;
+}
+
+.btn-komerz:hover {
+    background-color: var(--komerz-blue);
+    color: white;
+    border-color: var(--komerz-blue);
+    transform: translateY(-2px);
+    /* Effetto sollevamento */
+    box-shadow: 0 4px 8px rgba(67, 78, 160, 0.2);
+    /* Ombra con il tuo blu */
+}
+
+/* Se preferisci una versione più sobria quando non è in hover */
+.btn-komerz i {
+    color: var(--komerz-gray);
+    transition: color 0.3s ease;
+}
+
+.btn-komerz:hover i {
+    color: white;
+}
+
+/* ------------------------------------------------------fine-Show-announcement-------------------------------------- */
+
+
+
+/*-------------------------------------------------------image-create-----------------------------------------------------*/
+
+.img-preview {
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: cover;
+    height: 120px;
+    width: 120px;
+}
+
+
+/*------------------------------------------------------fine-image-create-----------------------------------------------------*/
+
+
+
+
+/* --------------------------------------------------------revisor-index------------------------------------------------------ */
+
+/* VARIABILI (Assicurati che siano definite nel :root) */
+:root {
+    --komerz-blue: #434ea0;
+    --color-accent: #00D1FF;
+    --color-dark: #212429;
+    --color-main: #ffffff;
+}
+
+/* HEADER DASHBOARD */
+.revisor-header-box {
+    border-bottom: 3px solid var(--komerz-blue);
+    padding-bottom: 1rem;
+}
+
+.text-komerz {
+    color: var(--komerz-blue) !important;
+}
+
+.revisor-subtitle {
+    text-transform: uppercase;
+    letter-spacing: 2px;
+    font-size: 0.8rem;
+    color: #6c757d;
+    margin-top: 0.5rem;
+}
+
+/* CARDS IMMAGINI */
+.revisor-image-card {
+    border-radius: 15px;
+    overflow: hidden;
+    background: #fff;
+    transition: transform 0.3s ease;
+}
+
+.revisor-image-card:hover {
+    transform: scale(1.05);
+}
+
+/* CARD DETTAGLI */
+.revisor-detail-card {
+    background: #ffffff;
+    border-radius: 25px;
+    border: 1px solid rgba(0, 0, 0, 0.05);
+}
+
+.badge-category {
+    background-color: var(--color-accent);
+    color: var(--color-dark);
+    padding: 0.5rem 1rem;
+    border-radius: 50px;
+    font-weight: 600;
+    font-size: 0.8rem;
+}
+
+.revisor-info-box {
+    background-color: #f8f9fa;
+    border-left: 4px solid var(--komerz-blue);
+}
+
+.revisor-section-title {
+    font-size: 0.75rem;
+    font-weight: 800;
+    color: #adb5bd;
+    text-transform: uppercase;
+    margin-bottom: 0.5rem;
+}
+
+.revisor-description {
+    color: #495057;
+    line-height: 1.6;
+}
+
+/* PULSANTI */
+.btn-reject {
+    border: 2px solid #dc3545 !important;
+    color: #dc3545 !important;
+    background: transparent;
+    transition: all 0.3s ease;
+}
+
+.btn-reject:hover {
+    background-color: #dc3545 !important;
+    color: white !important;
+    transform: translateY(-2px);
+}
+
+.btn-accept {
+    background-color: var(--komerz-blue) !important;
+    border: 2px solid var(--komerz-blue) !important;
+    transition: all 0.3s ease;
+}
+
+.btn-accept:hover {
+    filter: brightness(1.2);
+    transform: translateY(-2px);
+    box-shadow: 0 5px 15px rgba(67, 78, 160, 0.3);
+}
+
+/* ALERT PERSONALIZZATO */
+.alert-custom-feedback {
+    background-color: var(--color-dark) !important;
+    color: white !important;
+}
+
+.x-small {
+    font-size: 0.7rem;
+}
+
+.badge {
+    background-color: var(--komerz-blue);
+    color: var(--color-main);
+}
+
+/* Stile per l'alert di successo personalizzato */
+.alert-revisor-success {
+    /* Sfondo scuro preso dalla tua variabile o navbar */
+    background-color: var(--color-dark, #212429) !important;
+
+    /* Verde acceso per il testo */
+    color: #00ff88 !important;
+
+    /* Bordo verde acceso sottile e arrotondato */
+    border: 1px solid #00ff88 !important;
+    border-radius: 50px;
+    /* Effetto pillola */
+
+    padding: 15px 30px;
+    font-weight: 600;
+    font-size: 1rem;
+}
+
+/* Colore dell'icona specifico (per sicurezza) */
+.alert-revisor-success i {
+    color: #00ff88 !important;
+    font-size: 1.2rem;
+}
+
+/* Effetto glow opzionale (rende la linea verde ancora più "accesa") */
+.alert-revisor-success {
+    box-shadow: 0 0 15px rgba(0, 255, 136, 0.2) !important;
+}
+
+/* --------------------------------------------------revisor-index-fine------------------------------------------------------ */
+
+/* ----------------------------------------------------------Error----------------------------------------------------------- */
+
+/* Container principale */
+.error-container {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    min-height: 85vh;
+    padding: 2rem;
+}
+
+/* La Card bianca */
+.error-card {
+    text-align: center;
+    padding: 3.5rem;
+    background-color: #fff;
+    border-radius: 2rem;
+    border-top: 5px solid var(--komerz-blue);
+    position: relative;
+    overflow: hidden;
+    max-width: 650px;
+    width: 100%;
+}
+
+/* Icona di sfondo semitrasparente */
+.card-bg-icon {
+    position: absolute;
+    font-size: 250px;
+    top: -50px;
+    right: -50px;
+    color: #f8f9fa;
+    z-index: 0;
+    transform: rotate(-15deg);
+    pointer-events: none;
+}
+
+/* Contenuto sopra l'icona di sfondo */
+.error-content {
+    position: relative;
+    z-index: 1;
+}
+
+/* Icona Esclamativa */
+.error-icon {
+    font-size: 5rem;
+    color: var(--komerz-blue);
+}
+
+/* Stile del numero 404 */
+.error-number {
+    font-weight: 900;
+    margin: 0;
+    font-size: clamp(100px, 18vw, 170px);
+    line-height: 0.8;
+    color: #f1f1f1;
+    text-shadow: 2px 2px 0px var(--komerz-blue);
+}
+
+/* Titoli e testi */
+.error-title {
+    font-weight: 800;
+    color: #212529;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    margin-bottom: 1rem;
+}
+
+.error-subtitle {
+    font-size: 1.15rem;
+    color: #6c757d;
+    max-width: 450px;
+    margin: 0 auto 3rem auto;
+    line-height: 1.6;
+}
+
+/* Bottone Home personalizzato */
+.btn-home {
+    background-color: var(--komerz-blue);
+    color: #fff;
+    border: 2px solid var(--komerz-blue);
+    border-radius: 50px;
+    padding: 0.8rem 3rem;
+    font-weight: 700;
+    text-transform: uppercase;
+    transition: all 0.3s ease;
+}
+
+.btn-home:hover {
+    background-color: transparent;
+    color: var(--komerz-blue);
+    transform: translateY(-3px);
+    box-shadow: 0 10px 20px rgba(0, 0, 0, 0.1);
+}
+
+/* ------------------------------------------------------fine-error----------------------------------------------------------- */
+
+
+
+
+
+/* ----------------------------------------------------------footer----------------------------------------------------------- */
+
+
+/* Base Footer */
+.bg-komerz-dark {
+    background-color: var(--footer-bg) !important;
+}
+
+/* Testo descrittivo */
+.text-light-gray {
+    color: var(--komerz-gray) !important;
+    font-size: 0.95rem;
+    line-height: 1.6;
+}
+
+/* Titoli delle colonne con accento blu */
+.border-bottom-komerz {
+    border-bottom: 2px solid var(--komerz-blue);
+    display: inline-block;
+    padding-bottom: 8px;
+    color: #fff !important;
+}
+
+/* Link del footer armonizzati */
+.footer-link {
+    color: var(--komerz-gray) !important;
+    text-decoration: none !important;
+    transition: all 0.3s ease;
+}
+
+.footer-link:hover {
+    color: var(--komerz-blue) !important;
+    /* Passa al blu del logo */
+    padding-left: 5px;
+    /* Piccolo effetto movimento */
+}
+
+/* Icone nei contatti */
+.text-komerz-blue {
+    color: var(--komerz-blue) !important;
+}
+
+/* Sezione Copyright finale */
+.copyright-section {
+    background-color: rgba(0, 0, 0, 0.2);
+    /* Sfondo leggermente più scuro */
+    font-size: 0.9rem;
+}
+
+/* Luminosità logo */
+.brightness-img {
+    filter: brightness(1.05);
+    /* Leggerissimo aumento di luminosità su scuro */
+}
+
+
+.button-4-container {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    height: 50px;
+    width: 200px;
+    background-color: white;
+    border: 1px solid #040461;
+    text-transform: uppercase;
+    color: #040461;
+    font-weight: bold;
+    letter-spacing: 2px;
+    transition: 0.4s;
+    position: relative;
+    cursor: pointer;
+    z-index: 10;
+}
+
+.button-4-container:hover {
+    transform: scale(1.1);
+    border-color: transparent;
+}
+
+.links {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    background-color: white;
+    left: 0;
+    top: 0;
+    opacity: 0;
+    transition: 0.4s;
+    display: flex;
+    align-items: center;
+    justify-content: space-around;
+    pointer-events: none;
+}
+
+.button-4-container:hover .links {
+    opacity: 1;
+    pointer-events: auto;
+}
+
+a.button-4-box {
+    width: 35px;
+    height: 35px;
+    background-color: #040461;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    color: white !important;
+    /* Forza il colore bianco sopra i link di bootstrap */
+    text-decoration: none;
+    transition: 0.6s;
+}
+
+a.button-4-box:hover {
+    transform: rotateZ(45deg);
+}
+
+a.button-4-box i {
+    transition: 0.6s;
+}
+
+a.button-4-box:hover i {
+    transform: rotateZ(-45deg);
+}
+
+a.button-4-box i {
+    transition: 0.6s;
+    display: inline-block;
+    /* Importante per far funzionare il transform: rotate */
+}
+
+
+/*--logo sponsor--*/
+
+/* Container per i loghi sponsor */
+.sponsor-logos {
+    display: flex;
+    flex-direction: column;
+    /* Li tiene uno sotto l'altro come avevi prima */
+    gap: 15px;
+    /* Spazio tra i loghi */
+    align-items: flex-start;
+}
+
+/* Stile delle immagini dei loghi */
+.sponsor-img {
+    height: 25px;
+    /* Altezza uniforme */
+    max-width: 120px;
+    object-fit: contain;
+    filter: brightness(0) invert(1);
+    /* Trasforma i loghi colorati in bianchi */
+    opacity: 0.6;
+    /* Leggermente trasparenti di base */
+    transition: all 0.4s ease;
+}
+
+/* Effetto Hover sui loghi */
+.sponsor-link:hover .sponsor-img {
+    opacity: 1;
+    filter: brightness(0) invert(1) scale(1.1);
+    /* Restano bianchi ma più luminosi e grandi */
+    /* Se vuoi che tornino a colori all'hover, usa: filter: none; */
+}
+
+.sponsor-img {
+    height: 30px;
+    /* Leggermente più grande per leggibilità */
+    max-width: 130px;
+    object-fit: contain;
+    /* Rende il logo completamente bianco */
+    filter: brightness(0) invert(1);
+    opacity: 0.7;
+    transition: all 0.3s ease;
+    margin-bottom: 10px;
+}
+
+.sponsor-link:hover .sponsor-img {
+    opacity: 1;
+    transform: scale(1.05);
+    /* Rimuovi il commento qui sotto se vuoi che al passaggio del mouse tornino i colori originali */
+    /* filter: none; */
+}
+
+#footer input::placeholder {
+    color: rgba(255, 255, 255, 0.634) !important;
+    font-size: 0.7rem;
+}
+
+/* Stile base per l'input per prepararlo all'animazione */
+/* 1. Transizione fluida per l'input e il pulsante */
+.newsletter-wrapper input[name="email"],
+.newsletter-wrapper button[type="submit"] {
+    transition: all 0.3s ease-in-out !important;
+}
+
+/* 2. Effetto Hover & Focus sull'input (quello di prima) */
+.newsletter-wrapper input[name="email"]:hover,
+.newsletter-wrapper input[name="email"]:focus {
+    transform: scale(1.05);
+    background-color: rgba(255, 255, 255, 0.052) !important;
+}
+
+/* 3. Effetto Hover sul Pulsante d'invio */
+.newsletter-wrapper button[type="submit"]:hover {
+    transform: scale(1.2);
+    /* Lo zoomiamo un po' di più essendo piccolo */
+    background-color: #2a3cc0 !important;
+    /* Schiarisce leggermente il blu Komerz */
+    filter: brightness(1.2);
+}
+
+/* 4. Effetto al Click (quando viene premuto) */
+.newsletter-wrapper button[type="submit"]:active {
+    transform: scale(0.9);
+    /* Effetto "pressione": si rimpicciolisce un istante */
+}
+
+/*-------------------------------------------------------------fine footer------------------------------------------------*/
+
